@@ -2,15 +2,20 @@ import findspark
 findspark.init()
 from pyspark.sql import SparkSession
 from pyspark import SparkConf, SparkContext 
+import requests
 
 from pyspark.sql.functions import format_string, substring, lpad, concat, initcap, lower, concat_ws, col, concat, lit
 from pyspark.sql.types import IntegerType, TimestampType, StringType,  DoubleType
 
 spark = SparkSession.builder \
     .appName("PySpark MySQL Connection") \
-    .config("spark.jars", "/Users/iris/Downloads/mysql-connector-java-8.0.23.jar") \
+    .config("spark.jars", "./mysql-connector-java-8.0.23.jar") \
     .config("spark.driver.memory", "4g") \
     .getOrCreate()
+    
+print("__________________________________")
+print('Spark session created')
+print("__________________________________")
 
 path_customer = './data/cdw_sapp_custmer.json'
 path_credit = './data/cdw_sapp_credit.json'
@@ -114,7 +119,7 @@ db_cursor.execute("USE creditcard_capstone;")
 url='jdbc:mysql://localhost:3306/creditcard_capstone'
 
 # Path to your MySQL JDBC connector JAR
-mysql_jar_path = "/Users/iris/Downloads/mysql-connector-java-8.0.23.jar"
+mysql_jar_path = "./mysql-connector-java-8.0.23.jar"
 
 # Set the properties including user and password
 properties = {
@@ -122,18 +127,39 @@ properties = {
     "password": mypass,
     "driver": "com.mysql.jdbc.Driver"
 }
-
 # Write DataFrame to MySQL
 branch_df.write.jdbc(url=url, table="CDW_SAPP_BRANCH", mode="overwrite", properties=properties)
 credit_df.write.jdbc(url = url, table="CDW_SAPP_CREDIT_CARD", mode="overwrite", properties=properties)
 customer_df.write.jdbc(url = url, table="CDW_SAPP_CUSTOMER", mode="overwrite", properties=properties)
 
+# load data from API
+response = requests.get(loan_endpoint)
+if response.status_code != 200:
+    print(f'API service return response with status code : {response.status_code}')
+else: 
+    loan_data = response.json()
+    print("__________________________________")
+    print('Data pulled from API')
+    print("__________________________________")
+    print('API endpoint status code: ' + str(response.status_code))
+    print("__________________________________")
+
+
+    loan = spark.createDataFrame(loan_data)
+    loan.show(3)
+    
+    loan.write.jdbc(url=url, table="CDW_SAPP_loan_application", mode="overwrite", properties=properties)
+    print("__________________________________")
+    print('Data from API loaded to MySQL DataBase. Table name: CDW_SAPP_loan_application')
+    
 
 print('______________________________________')
 print('DataBase created: creditcard_capstone')
 print('_______________________________________')
 print('Table CDW_SAPP_BRANCH loaded into MySQL')
-print('CDW_SAPP_CREDIT_CARD loaded into MySQL')
+print('Table CDW_SAPP_CREDIT_CARD loaded into MySQL')
 print('Table CDW_SAPP_CUSTOMER loaded into MySQL')
+
+
 
 spark.stop()
