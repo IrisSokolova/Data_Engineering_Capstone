@@ -1,7 +1,9 @@
 findsinpark
 pyspark
+pyspark.sql
 mysql
 matplotlib
 pandas
-from pyspark.sql.types import DoubleType
-import requests
+requests
+os
+mysql.connector
