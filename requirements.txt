@@ -1,0 +1,7 @@
+findsinpark
+pyspark
+mysql
+matplotlib
+pandas
+from pyspark.sql.types import DoubleType
+import requests
