@@ -62,7 +62,7 @@ print("___________________________________________________________")
 
     
 def transaction_by_customers_zip():
-    zip = input('Enter zip(6 digit numbers): ')
+    zip = input('Enter zip(5 digit numbers): ')
     while len(zip)  != 5 and str.isdigit(zip):
             print('Not correct zip code!')
             zip = input('Enter zip(6 digit numbers): ')
