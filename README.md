@@ -19,7 +19,7 @@ The project involves working with the following dataset files:
 
 ### Extract Transform Load processes 
 
-This script demonstrates ETL processes by transforming and loading data into a MySQL database, including loading data from an API. It also highlights the use of Spark for data processing and integration with MySQL for storing transformed data.
+[This script](./DB_Create_Transform.py) demonstrates ETL processes by transforming and loading data into a MySQL database, including loading data from an API. It also highlights the use of Spark for data processing and integration with MySQL for storing transformed data.
 1. Data Transformation and Cleaning:
 	- Transforms and cleans three DataFrames ('customer', 'branch', 'credit') using various operations like column type casting, string formatting, concatenation, and dropping unnecessary columns.
 2. Database Setup:
@@ -31,12 +31,14 @@ This script demonstrates ETL processes by transforming and loading data into a M
 	- Retrieves data from a given API endpoint representing loan application data.
 5. Spark Session Setup:
 	- Sets up a Spark session with specified configurations, including the JDBC connector.
+[Step by Step thinking process you can see here](./PySparkSQLConnection.ipynb) 
 
 ### Application Front-End
+[Exploratory Data Analysis with example in Jupyter notebook](Transaction_and_Customers_mode.ipynb)
 
 Once the data is successfully loaded into the database, a console-based Python program is designed to cater to the following system requirements: 
 
-Customers mode:  
+[Customers mode](./Customers_mode.py):  
 ```
   Menu:
       1. Check existing account details of a customer
@@ -45,7 +47,7 @@ Customers mode:
       4. Display transactions made by a customer between two dates
       5. Exit
 ```
-Transactional mode:
+[Transactional mode](./Transaction_mode_menu.py):
 ```
     Menu:
     1. Distplay the transactions made by customers living in a given zip code for a given month and year
@@ -55,8 +57,11 @@ Transactional mode:
 ```
  
 ### Data Analysis and Visualization
+ 
+ [Python script for the front-end application](Customers_mode.py) 
 
 After the data is loaded into the database and can be accessed via the front end, the project addresses the business analyst team's need for data analysis and visualization using Python libraries. The focus is on analyzing loan application data and automating the loan eligibility process based on customer details.
+
 ```
    Menu:
     1. Plot transaction type with the highest transaction count
