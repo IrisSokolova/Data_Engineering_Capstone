@@ -74,6 +74,11 @@ After the data is loaded into the database and can be accessed via the front end
 
 ```
 
+Subsequently, Tableau is employed to visualize the analyzed data, facilitating a comprehensive and insightful dashboard that aids in making data-driven decisions.
+Using Tableau with MySQL offers a powerful combination of efficient data storage and retrieval through MySQL and rich, interactive data visualization capabilities with Tableau.
+
+![Bank visualization Dashboard](./Visuals/Bank_Visualization.png)
+
 ### Data Sources
 
 The project utilizes an external API endpoint to access loan application data. The API provides a dataset with essential fields required for loan application analysis.
