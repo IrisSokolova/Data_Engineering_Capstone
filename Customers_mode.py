@@ -137,8 +137,16 @@ def generate_monthly_bill():
             AND YEAR = {year}
             AND MONTH = {month}
     """
+    query_total = f"""SELECT SUM(TRANSACTION_VALUE) as Total_value
+                FROM credit
+                WHERE CUST_CC_NO = {credit_card_no}
+                AND YEAR = {year}
+                AND MONTH = {month}
+                """
     result = spark.sql(query)
+    result_total = spark.sql(query_total)
     result.show()
+    result_total.show()
 
 # Action 4: Display transactions made by a customer between two dates
 def display_transactions_between_dates():
@@ -155,7 +163,10 @@ def display_transactions_between_dates():
     """
     result = spark.sql(query)
     result.show()
-2
+ 
+ # clear screen
+os.system('cls' if os.name == 'nt' else 'clear')
+    
 # Menu for user interaction
 while True:
     print("Menu:")
