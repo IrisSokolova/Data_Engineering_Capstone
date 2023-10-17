@@ -89,7 +89,7 @@ def transaction_by_customers_zip():
                             where c.cust_zip = {zip} \
                             and t.YEAR = {year} and t.MONTH = {month}"
     result_transaction_by_zip = spark.sql(query_transaction_zip) 
-    print(result_transaction_by_zip.show())
+    print(result_transaction_by_zip.show(result_transaction_by_zip.count(), False))
     
 def transaction_by_type():
          print("List of transactions: ")
@@ -101,7 +101,8 @@ def transaction_by_type():
          while transaction_type not in trans_type_list:
              print('Not correct Transaction type!')
              transaction_type = input('Enter transaction type: ')
-         query_total_by_type = f"select TRANSACTION_TYPE, round(sum(TRANSACTION_VALUE), 2) as total_value \
+         query_total_by_type = f"select TRANSACTION_TYPE, round(sum(TRANSACTION_VALUE), 2) as total_value, \
+                                count(TRANSACTION_ID) as total_numbers \
                                 from credit \
                                 where TRANSACTION_TYPE = '{transaction_type}' \
                                 group by TRANSACTION_TYPE"
@@ -116,8 +117,8 @@ def total_count_sum_transaction_branch_state():
             while state not in branch_list:
                 print('Not correct State literal!')
                 state = input('Enter one of the State literals: ')
-            query_state = f"select count(t.TRANSACTION_ID), \
-                            round(sum(t.TRANSACTION_VALUE), 2) \
+            query_state = f"select count(t.TRANSACTION_ID) as total_numbers, \
+                            round(sum(t.TRANSACTION_VALUE), 2) as total_value\
                             from credit t \
                             left join branch b \
                             on t.BRANCH_CODE = b.BRANCH_CODE \
