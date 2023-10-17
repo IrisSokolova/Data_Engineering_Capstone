@@ -124,12 +124,15 @@ def generate_monthly_bill():
     credit_card_no = input("Enter credit card number: ")
     while len(credit_card_no) != 16 and str.isdigit(credit_card_no):
         print('Not valid number!')
+        credit_card_no = input("Enter credit card number: ")
     year = input("Enter year: ")
     while len(year) !=4 and str.isdigit(year):
         print('Not correct year!')
+        year = input("Enter year: ")
     month = input("Enter month: ")
     while len(month) !=2 and str.isdigit(month):
-        print('Not correct month!')
+        print('Not correct month! Example: 02')
+        month = input("Enter month: ")
     query = f"""
         SELECT TRANSACTION_ID, TRANSACTION_TYPE, TRANSACTION_VALUE
         FROM credit
