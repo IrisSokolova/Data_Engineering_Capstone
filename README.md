@@ -1,7 +1,5 @@
-## Data_Engineering_Capstone
-ETL process for a Loan Application dataset and a Credit Card dataset
-
 ### Credit Card System Data Engineering Capstone
+ETL process for a Loan Application dataset and a Credit Card dataset
 
 This capstone project showcases the application of various technologies to manage an ETL (Extract, Transform, Load) process for a Loan Application dataset and a Credit Card dataset. The project involves utilizing Python (Pandas, advanced modules like Matplotlib), SQL, Apache Spark (Spark Core, Spark SQL), and Python Visualization and Analytics libraries.
 
@@ -58,7 +56,7 @@ Once the data is successfully loaded into the database, a console-based Python p
  
 ### Data Analysis and Visualization
  
- [Python script for the front-end application](Customers_mode.py) 
+ [Python script for the front-end charts generation](./Bank_visualization.py) 
 
 After the data is loaded into the database and can be accessed via the front end, the project addresses the business analyst team's need for data analysis and visualization using Python libraries. The focus is on analyzing loan application data and automating the loan eligibility process based on customer details.
 
@@ -87,10 +85,10 @@ The project utilizes an external API endpoint to access loan application data. T
 
 ### Project Files
 
-- **`DB_Create_Transform.py`**: Script for database creation and data transformation.
-- **`Customers_mode.py`**: Module for managing customer-related functionalities.
-- **`Transactional_mode.py`**: Module for handling transactional data.
-- **`Bank_visulization.py`**: Module for visualizing banking data.
+- [**`DB_Create_Transform.py`**](./DB_Create_Transform.py): Script for database creation and data transformation.
+- [**`Customers_mode.py`**](./Customers_mode.py): Module for managing customer-related functionalities.
+- [**`Transactional_mode.py`**](./Transaction_mode_menu.py): Module for handling transactional data.
+- [**`Bank_visulization.py`**](./Bank_visualization.py): Module for visualizing banking data.
 - **`Visualization` Folder**: Contains files related to visualization functionalities.
 
 ## How to Run
