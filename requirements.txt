@@ -1,9 +1,6 @@
-findsinpark
-pyspark
-pyspark.sql
-mysql
 matplotlib
+mysql-connector-python
 pandas
+pyspark
 requests
-os
-mysql.connector
+findspark
